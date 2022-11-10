@@ -31,7 +31,6 @@ function App() {
       </nav>
 
       <Routes>
-        <Route path='/' element={<App/>} />
         <Route path='/newgame' element={<NewGame />} />
         <Route path='/about' element={<About path='/about' />} />
       </Routes>
