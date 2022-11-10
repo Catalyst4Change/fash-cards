@@ -1,7 +1,5 @@
 import React, { Routes, Route, Link } from "react";
 
-
-
 const Home = () => {
 
   return (
