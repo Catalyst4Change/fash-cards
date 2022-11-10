@@ -21,6 +21,9 @@ I found [Puppeteer](https://www.npmjs.com/package/puppeteer) which can launch a 
 2 user personas
 user stories that articulate how the app should perform
 
+## Problems
+At several points along the way, I experienced significant problems with GitHub. More than once I had the error `There isn't anything to compare. Branches are entirely different commit histories.` I imagine this happened as I was combining previously seperate projects into a single folder. I Googled around trying to find a solution to this problem, but ultimately settled on the tried and true tactic, "Burn it down and start over." Because of this, all of my early commits are unfortunately lost. 
+
 images
 wins and challenges
 goals
