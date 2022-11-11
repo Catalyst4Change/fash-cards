@@ -1,21 +1,18 @@
-import React from "react";
+import React, {useState} from "react";
 import PropTypes from 'prop-types'
-import useState from "react";
+import Card from "./Card/Card.js";
 
 const Game = ({ cardsData, shuffle }) => {
-  const [flip, setFlip] = useState(false)
 
   const shuffledCards = shuffle(cardsData)
 
   const makeButtons = (currentSymbol) => {
     const answerButtons = []
     answerButtons.push(currentSymbol)
-    console.log(answerButtons);
     
     shuffledCards.slice(-3,shuffledCards.length).map(card => {
       answerButtons.push(card.symbol)
     })
-    console.log(answerButtons);
 
     const shuffledButtons = shuffle(answerButtons).map(button => {
       return (
@@ -30,6 +27,8 @@ const Game = ({ cardsData, shuffle }) => {
   }
 
   const checkCorrect = (event, currentSymbol) => {
+    event.preventDefault() 
+
     if (event.target.id === currentSymbol) {
       answerCorrect()
       console.log("correct!");
@@ -44,34 +43,14 @@ const Game = ({ cardsData, shuffle }) => {
   }
 
   const answerWrong = () => {
-    () => setFlip(!flip)
+    // setFlip(!flip)
   }
 
   const cards = shuffledCards.slice(0,10).map(card => {
+    console.log(card);
     return (
-      <section className=" card-section column"> 
-        <div className="card-container column">
-          <div key={card.symbol} className={`card column ${flip ? 'flip' : ''}`}>
-
-            <div className="front">
-              <div className="card-image-container column"> 
-                <img className="card-image" src={card.image} />
-              </div>
-            </div>
-
-            <div className="back">
-              <div className="card-description column"> 
-                <p>{card.desc}</p>
-              </div>
-            </div>
-          </div>  
-        </div>
-
-        <div className="card-options">
-          <div className="card-option">💾</div>
-          <div className="card-option">🔄</div>
-        </div>
-        {makeButtons(card.symbol)}
+      <section key={card} className="card-section column"> 
+        <Card card={card} makeButtons={makeButtons} checkCorrect={checkCorrect} />
       </section>
     )
   })

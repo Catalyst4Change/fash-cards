@@ -5,6 +5,10 @@
   align-items: center;
 }
 
+section {
+  width: 100%;
+}
+
 .test-border {
   border: 2px red dashed;
 }

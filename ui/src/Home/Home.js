@@ -7,8 +7,6 @@ const Home = () => {
       <div className="logo">
         🤬
       </div>
-
-
     </section>
   )
 }

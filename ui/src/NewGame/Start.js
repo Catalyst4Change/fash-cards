@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Game from "../Game/Game.js";
 import Home from "../Home/Home.js";
 
-const NewGame = () => {
+const Start = () => {
 
   return (
     <section>
@@ -26,4 +26,4 @@ const NewGame = () => {
   )
 }
 
-export default NewGame
+export default Start
