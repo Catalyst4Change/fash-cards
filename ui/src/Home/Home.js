@@ -4,7 +4,7 @@ const Home = () => {
 
   return (
     <section>
-      <div className="logo">
+      <div className="logo column">
         🤬
       </div>
     </section>

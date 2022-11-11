@@ -29,8 +29,6 @@ function App() {
     return array;
   }
 
-
-  console.log("window", window.location.href);
   return (
     <section className="App column">
 
@@ -48,11 +46,10 @@ function App() {
       </Routes>
 
       <nav className='column'>
+        {page === 'start' && <button onClick={() => setPage('game')}><Link to='/game'>Play</Link></button>}
         {page != 'home' && <button onClick={() => setPage('home')}><Link to='/home'>Home</Link></button>}
-        {page != 'about' && <button onClick={() => setPage('about')}><Link to='/about'>About</Link></button>}
-        {page != 'start' && <button onClick={() => setPage('start')}><Link to='/start'>Start</Link></button>}
-
-        {/* <button><Link to='/start'>Start</Link></button> */}
+        {page === 'home' && <button onClick={() => setPage('about')}><Link to='/about'>About</Link></button>}
+        {page === 'home' && <button onClick={() => setPage('start')}><Link to='/start'>Start</Link></button>}
       </nav>
 
     </section>

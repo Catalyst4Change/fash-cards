@@ -1,8 +1,36 @@
 import React, {useState} from "react";
 import PropTypes from 'prop-types'
 
-const Card = ({ symbol, image, desc, makeButtons, checkCorrect }) => {
+const Card = ({ card, answerButtons}) => {
+  const {symbol, image, desc} = card
   const [flip, setFlip] = useState(false)
+  
+  const makeButtons = () => {
+    return answerButtons.map(button => {
+      return (
+        <button type="button" onClick={() => checkCorrect(button, symbol)}>{button}</button>
+      )
+    })
+  }
+
+  const checkCorrect = (button, symbol) => {
+    
+    if (button === symbol) {
+      answerCorrect()
+      console.log("correct!");
+    } else {
+      answerWrong()
+      console.log('wrong!');
+    }
+  }
+
+  const answerCorrect = () => {
+    
+  }
+  
+  const answerWrong = () => {
+    setFlip(!flip)
+  }
 
 
   return (
@@ -25,10 +53,10 @@ const Card = ({ symbol, image, desc, makeButtons, checkCorrect }) => {
       </div>
 
       <div className="card-options">
-        <div className="card-option">💾</div>
-        <div className="card-option">🔄</div>
+        <div className="column">
+         {makeButtons()}
+        </div>
       </div>
-      {makeButtons(symbol)}
     </section>
   )
 
@@ -36,8 +64,7 @@ const Card = ({ symbol, image, desc, makeButtons, checkCorrect }) => {
 
 Card.propTypes = {
   card: PropTypes.object,
-  makeButtons: PropTypes.func,
-  checkCorrect: PropTypes.func
+  answerButtons: PropTypes.array
 }
 
 
