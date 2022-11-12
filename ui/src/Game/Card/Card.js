@@ -1,10 +1,11 @@
 import React, {useState} from "react";
 import PropTypes from 'prop-types' 
 
-const Card = ({ card, answerButtons, flipCard, addOneCorrect, addOneIncorrect}) => {
+const Card = ({ card, answerButtons, flipCard, addOneCorrect, addOneIncorrect, saveCardForLater}) => {
   const {symbol, image, desc} = card
   const [flip, setFlip] = useState(false)
   const [answered, setAnswered] = useState('')
+  const [saved, setSaved] = useState(false)
   
   const makeButtons = () => {
     return answerButtons.map(button => {
@@ -42,7 +43,8 @@ const Card = ({ card, answerButtons, flipCard, addOneCorrect, addOneIncorrect}) 
   }
 
   const saveCard = () => {
-    
+    setSaved(true)
+    saveCardForLater(card)
   }
 
   return (
@@ -66,7 +68,9 @@ const Card = ({ card, answerButtons, flipCard, addOneCorrect, addOneIncorrect}) 
 
       <div className="column">
         <div className="card-options">
-          <span className="card-option-emoji" onClick={saveCard}>💾</span>
+          {!saved && <span className="card-option-emoji" onClick={saveCard}>💾</span>}
+          {saved && <span className="card-option-emoji">✅</span>}
+          
           <span className="card-option-emoji" onClick={justChecking}>🔄</span>
 
         </div>
@@ -85,7 +89,8 @@ Card.propTypes = {
   answerButtons: PropTypes.array,
   flipCard: PropTypes.func,
   addOneCorrect: PropTypes.func,
-  addOneIncorrect: PropTypes.func
+  addOneIncorrect: PropTypes.func,
+  saveCardForLater: PropTypes.func
 }
 
 

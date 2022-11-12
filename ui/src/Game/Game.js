@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Card from "./Card/Card.js";
 import CountDown from 'react-countdown'
 
-const Game = ({ cardsData, shuffle }) => {  
+const Game = ({ cardsData, shuffle, saveCardForLater }) => {  
   const cardsFlipped = useRef(0)
   const correctGuesses = useRef(0)
   const incorrectGuesses = useRef(0)
@@ -46,7 +46,7 @@ const Game = ({ cardsData, shuffle }) => {
     
     return (
       <article className="card-section column"> 
-        <Card card={card} answerButtons={answerButtons} flipCard={flipCard} addOneCorrect={addOneCorrect} addOneIncorrect={addOneIncorrect}/>
+        <Card card={card} answerButtons={answerButtons} flipCard={flipCard} addOneCorrect={addOneCorrect} addOneIncorrect={addOneIncorrect} saveCardForLater={saveCardForLater} />
       </article>
     )
   })
@@ -72,7 +72,8 @@ const Game = ({ cardsData, shuffle }) => {
 
 Game.propTypes = {
   cardsData: PropTypes.array,
-  shuffle: PropTypes.func
+  shuffle: PropTypes.func,
+  saveCardForLater: PropTypes.func
 }
 
 export default Game
