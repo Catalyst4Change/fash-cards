@@ -37,8 +37,16 @@ const Card = ({ card, answerButtons, flipCard, addOneCorrect, addOneIncorrect}) 
     console.log('wrong!');
   }
 
+  const justChecking = () => {
+    setFlip(!flip)
+  }
+
+  const saveCard = () => {
+    
+  }
+
   return (
-    <section className=" card-section column"> 
+    <section className="card-section column"> 
       <div className="card-container column">
         <div className={`card column ${flip ? 'flip' : ''}`}>
 
@@ -56,15 +64,20 @@ const Card = ({ card, answerButtons, flipCard, addOneCorrect, addOneIncorrect}) 
         </div>  
       </div>
 
-      <div className="card-options">
-        <div className="column">
+      <div className="column">
+        <div className="card-options">
+          <span className="card-option-emoji" onClick={saveCard}>💾</span>
+          <span className="card-option-emoji" onClick={justChecking}>🔄</span>
+
+        </div>
+
+        <div className=" card-answers column">
           {answered && <button>NEXT</button>}
           {!answered && makeButtons()}
         </div>
       </div>
     </section>
   )
-
 }
 
 Card.propTypes = {

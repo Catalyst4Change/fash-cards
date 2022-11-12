@@ -59,7 +59,7 @@ a {
   border-radius: 1em;
   width: 80vw;
   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.5);
-  height: 45vh;
+  height: 40vh;
 }
 
 .card-image-container {
@@ -79,7 +79,7 @@ a {
   justify-content: space-around;
 }
 
-.card-option {
+.card-option-emoji {
   font-size: 3em;
 }
 

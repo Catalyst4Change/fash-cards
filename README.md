@@ -15,6 +15,10 @@ I found [Puppeteer](https://www.npmjs.com/package/puppeteer) which can launch a 
 Implementing [Express](https://www.npmjs.com/package/express) was less difficult than figuring out Puppeteer. Since I already had all the data I needed neatly json'd, I imported it and placed it within a GET response. I did have brief permissions issues because I forgot about [CORS](https://www.npmjs.com/package/cors).
 
 ### Building the React App  
+Architecting this app took a lot of planning and also a lot of trial-and-error. It is still tricky for me to figure out what data/functions need to live on what level, and how that influences the overall performance. I made a lot of breakthroughs learning new functions and reminding myself of the 'data down, actions up' process of React.  
+The Game component holds all the information and functionality relative to the flash-cards, while each card holds it's own state on whether it has been answered and/or flipped yet. That may sound self-evident, but it took me a few permutations to get right.
+I had a lot of issues getting the cards to render right and have the generated buttons present reasonable, non-repeating answers. I learned how `useRef()` is a perfect way to hold state without refreshing the Dom every time it's accessed.
+After several unsuccessful attempts to build my own countdown timer, I finally installed [react-countdown](https://www.npmjs.com/package/react-countdown).
 
 ### Testing with Cypress  
 
