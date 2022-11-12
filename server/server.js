@@ -9,6 +9,10 @@ app.use(cors())
 app.locals.title = 'Hate-abase';
 app.locals.hateSymbols = data
 
+app.listen(app.get('port'), () => {
+  console.log(`${app.locals.title} is running on http://localhost:${app.get('port')}.`);
+});
+
 app.get('/', (request, response) => {
   response.send('It works!');
 });
@@ -18,7 +22,3 @@ app.get('/api/hatesymbols', (req,res) => {
 
   res.send( symbols )
 })
-
-app.listen(app.get('port'), () => {
-  console.log(`${app.locals.title} is running on http://localhost:${app.get('port')}.`);
-});

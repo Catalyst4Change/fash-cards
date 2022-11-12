@@ -1,0 +1,112 @@
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section {
+  width: 100%;
+}
+
+.test-border {
+  border: 2px red dashed;
+}
+
+h1 {
+  font-size: 3.5em;
+  background-color: black;
+  color: white;
+  width: 100%;
+  margin: 0%;
+}
+
+h2 {
+  font-size: 3em;
+  text-align: center;
+  margin: 2.5%;
+}
+
+h3 {
+  font-size: 2em;
+}
+
+p {
+  width: 80%;
+  font-size: 1.5em;
+}
+
+.logo {
+  font-size: 20em;
+}
+
+button {
+  background-color: white;
+  border-radius: .25em;
+  font-size: 2em;
+  width: 80vw;
+  margin: 2.5%;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.card {
+  margin: 5% 0%;
+  border: 1px solid black;
+  border-radius: 1em;
+  width: 80vw;
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.5);
+  height: 50vh;
+}
+
+.card-image-container {
+  width: 80vw;
+  height: 40vh;
+  overflow: hidden;
+}
+
+.card-image {
+  height: 80%;
+  max-width: 100%;
+}
+
+.card-options {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.card-option {
+  font-size: 3em;
+}
+
+/* flip */
+
+.card {
+  transform-style: preserve-3d;
+  transition: 150ms;
+  transform: perspective(1000px) rotateY(var(--rotate-y,0)) translateY(var(--translate-y, 0));
+}
+
+.card.flip {
+  --rotate-y: 180deg;
+}
+
+.front {
+  left: 0;
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.back {
+  position: absolute;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}
+
+.rightAnswer {
+  background-color: green;
+}
