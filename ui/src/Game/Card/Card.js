@@ -1,42 +1,46 @@
 import React, {useState} from "react";
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types' 
 
-const Card = ({ card, answerButtons}) => {
+const Card = ({ card, answerButtons, flipCard, addOneCorrect, addOneIncorrect}) => {
   const {symbol, image, desc} = card
   const [flip, setFlip] = useState(false)
+  const [answered, setAnswered] = useState('')
   
   const makeButtons = () => {
     return answerButtons.map(button => {
       return (
-        <button type="button" onClick={() => checkCorrect(button, symbol)}>{button}</button>
+        <button type="button" id={button} onClick={(event) => checkCorrect(event, button, symbol)}>{button}</button>
       )
     })
   }
 
-  const checkCorrect = (button, symbol) => {
-    
+  const checkCorrect = (event, button, symbol) => {
+    event.preventDefault()
+    flipCard()
     if (button === symbol) {
       answerCorrect()
-      console.log("correct!");
     } else {
       answerWrong()
-      console.log('wrong!');
     }
   }
-
+  
   const answerCorrect = () => {
-    
+    setAnswered('correct')
+    addOneCorrect()
+    console.log("correct!")
   }
   
   const answerWrong = () => {
+    setAnswered('wrong')
+    addOneIncorrect()
     setFlip(!flip)
+    console.log('wrong!');
   }
-
 
   return (
     <section className=" card-section column"> 
       <div className="card-container column">
-        <div key={symbol} className={`card column ${flip ? 'flip' : ''}`}>
+        <div className={`card column ${flip ? 'flip' : ''}`}>
 
           <div className="front">
             <div className="card-image-container column"> 
@@ -54,7 +58,8 @@ const Card = ({ card, answerButtons}) => {
 
       <div className="card-options">
         <div className="column">
-         {makeButtons()}
+          {answered && <button>NEXT</button>}
+          {!answered && makeButtons()}
         </div>
       </div>
     </section>
@@ -64,7 +69,10 @@ const Card = ({ card, answerButtons}) => {
 
 Card.propTypes = {
   card: PropTypes.object,
-  answerButtons: PropTypes.array
+  answerButtons: PropTypes.array,
+  flipCard: PropTypes.func,
+  addOneCorrect: PropTypes.func,
+  addOneIncorrect: PropTypes.func
 }
 
 

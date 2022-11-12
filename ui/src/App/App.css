@@ -106,3 +106,7 @@ a {
   transform: rotateY(180deg);
   backface-visibility: hidden;
 }
+
+.rightAnswer {
+  background-color: green;
+}
