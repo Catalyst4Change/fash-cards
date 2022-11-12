@@ -9,7 +9,7 @@ const Card = ({ card, answerButtons, flipCard, addOneCorrect, addOneIncorrect}) 
   const makeButtons = () => {
     return answerButtons.map(button => {
       return (
-        <button type="button" id={button} onClick={(event) => checkCorrect(event, button, symbol)}>{button}</button>
+        <button id={button} onClick={(event) => checkCorrect(event, button, symbol)}>{button}</button>
       )
     })
   }

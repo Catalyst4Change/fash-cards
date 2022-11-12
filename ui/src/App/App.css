@@ -59,7 +59,7 @@ a {
   border-radius: 1em;
   width: 80vw;
   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.5);
-  height: 50vh;
+  height: 45vh;
 }
 
 .card-image-container {
@@ -109,4 +109,9 @@ a {
 
 .rightAnswer {
   background-color: green;
+}
+
+.countdown {
+  font-size: 1.5em;
+  margin: 0;
 }

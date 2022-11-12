@@ -1,22 +1,24 @@
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 import PropTypes from 'prop-types'
 import Card from "./Card/Card.js";
+import CountDown from 'react-countdown'
 
 const Game = ({ cardsData, shuffle }) => {  
-  const [cardsFlipped, setCardsFlipped] = useState(0)
-  const [correctGuesses, setCorrectGuesses] = useState(0)
-  const [incorrectGuesses, setIncorrectGuesses] = useState(0)
+  const cardsFlipped = useRef(0)
+  const correctGuesses = useRef(0)
+  const incorrectGuesses = useRef(0)
+  const [gameOver, setGameOver] = useState(false)
 
   const flipCard = () => {
-    setCardsFlipped(cardsFlipped + 1)
+    cardsFlipped.current = cardsFlipped.current + 1
   }
   
   const addOneCorrect = () => {
-    setCorrectGuesses(correctGuesses + 1)
+    correctGuesses.current = correctGuesses.current + 1
   }
   
   const addOneIncorrect = () => {
-    setIncorrectGuesses(incorrectGuesses + 1)
+    incorrectGuesses.current = incorrectGuesses.current + 1
   }
   
   const shuffledCards = shuffle(cardsData)
@@ -49,9 +51,21 @@ const Game = ({ cardsData, shuffle }) => {
     )
   })
 
+  const renderer = ({ hours, minutes, seconds, completed }) => {
+    if (completed) {
+      return <span>GAME OVER!</span>;
+    } else {
+      return <span>{minutes}:{seconds}</span>;
+    }
+  }
+
+
   return (
     <section className='card-carousel'>
-      {cards}
+      <span className="countdown column">
+      <CountDown date={Date.now() + 180000} renderer={renderer} />
+      </span>
+      {!gameOver && cards}
     </section>
   )
 }
@@ -62,5 +76,6 @@ Game.propTypes = {
 }
 
 export default Game
+
 
 
