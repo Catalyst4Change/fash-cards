@@ -115,3 +115,10 @@ a {
   font-size: 1.5em;
   margin: 0;
 }
+
+.saved {
+  height: 150%;
+  max-height: none;
+  width: 80vw;
+  max-width: none;
+}

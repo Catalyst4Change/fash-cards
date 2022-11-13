@@ -62,6 +62,7 @@ function App() {
         {page === 'home' && <button onClick={() => setPage('start')}><Link to='/start'>Start</Link></button>}
 
         {page === 'home' && savedCards.length > 0 ? <button onClick={() => setPage('saved')}><Link to='/saved'>Saved Cards</Link></button> : ""}
+        <button onClick={() => setPage('saved')}><Link to='/saved'>Saved Cards</Link></button>
       </nav>
 
     </section>

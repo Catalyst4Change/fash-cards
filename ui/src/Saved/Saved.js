@@ -1,23 +1,29 @@
 import React, {useRef, useState} from "react"
 import PropTypes from 'prop-types'
-import Card from "../Game/Card/Card.js"
 
 const Saved = ({ savedCards }) => {  
 
   const cards = savedCards.map(card => {
-    const currentSymbol = card.symbol
-    
+    const {symbol, image, desc} = card  
+
     return (
-      <article className="card-section column"> 
-        <Card card={card} />
-      </article>
+      <div className="column">
+        <div className={" saved card  column "}>
+          <div className="saved card-image-container column"> 
+            <h3>{symbol}</h3>
+            <img className=" card-image" src={image} />
+          </div>
+            <p>{desc}</p>
+        </div>
+      </div>
     )
   })
 
   return (
     <section className='card-carousel'>
-      <span className="countdown column">
-      </span>
+      <h2 className="countdown column">
+        Your saved cards:
+      </h2>
       {cards}
     </section>
   )
