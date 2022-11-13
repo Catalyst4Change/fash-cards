@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 
 const Saved = ({ savedCards }) => {  
 
-  const cards = savedCards.map(card => {
+  const cards = savedCards.map((card, index) => {
     const {symbol, image, desc} = card  
 
     return (
-      <div className="column">
+      <div key={"saved" + index} className="column">
         <div className={" saved card  column "}>
           <div className="saved card-image-container column"> 
-            <h3>{symbol}</h3>
+            <h3 className="column">{symbol}</h3>
             <img className=" card-image" src={image} />
           </div>
             <p>{desc}</p>

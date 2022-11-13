@@ -7,12 +7,21 @@ import Home from '../Home/Home.js';
 import Game from '../Game/Game.js';
 import Saved from '../Saved/Saved.js';
 import './App.css';
+import GameOver from '../GameOver/GameOver.js';
+import CountDown from 'react-countdown'
 
-function App() {
+
+const App = () => {
   const [page, setPage] = useState('home')
   const [cardsData, setCardsData] = useState([]) 
   // const cardsRef = useRef([])
   const savedCards = useRef([])
+  const [gameOver, setGameOver] = useState(false)
+  const [timer, setTimer] = useState(false)
+
+
+
+  console.log(page);
   
   useEffect(() => {
     fetchData().then(data => setCardsData(shuffle(data)))
@@ -40,30 +49,83 @@ function App() {
     console.log(savedCards.current)
   }
   
+  const goToPage = (event, page) => {
+    setPage(page)
+    console.log(event.target.href)
+  }
+
+  const startTimer = () => {
+    setTimer(true)
+  }
+
+  const resetTimer = () => {
+    setTimer(false)
+  }
+
+  // countdown
+
+
+  const renderer = ({ hours, minutes, seconds, completed }) => {
+    if (completed) {
+      setGameOver(true)
+      return <span>GAME OVER!</span>;
+    } else {
+      return <span>{minutes}:{seconds}</span>;
+    }
+  }
+  
+
   return (
     <section className="App column">
 
       <h1 className='column'>
         FASH CARDS
       </h1>
+      {timer && 
+        <span className="countdown column">
+          <CountDown date={Date.now() + 60000} renderer={renderer} />
+        </span>}
 
       <Routes>
         <Route path="/" element={ <Navigate to="/home" /> } />
         <Route path='/home' element={<Home />}/> 
         <Route path='/start/*' element={<Start />} />
         <Route path='/about' element={<About />} />
-        <Route path='/game' element={<Game cardsData={cardsData} shuffle={shuffle} saveCardForLater={saveCardForLater} />} />
+        <Route path='/game' element={<Game cardsData={cardsData} shuffle={shuffle} saveCardForLater={saveCardForLater} gameOver={gameOver} resetTimer={resetTimer} />} />
         <Route path='/saved' element={<Saved savedCards={savedCards.current} />} />
+        <Route path='/gameover' element={<GameOver resetTimer={resetTimer} />} />
       </Routes>
 
       <nav className='column'>
-        {page === 'start' && <button onClick={() => setPage('game')}><Link to='/game'>Play</Link></button>}
-        {page != 'home' && <button onClick={() => setPage('home')}><Link to='/home'>Home</Link></button>}
-        {page === 'home' && <button onClick={() => setPage('about')}><Link to='/about'>About</Link></button>}
-        {page === 'home' && <button onClick={() => setPage('start')}><Link to='/start'>Start</Link></button>}
+        {page === 'start' && 
+          <button onClick={(event) => {goToPage(event, 'game'); startTimer()}}>
+            <Link to='/game'>Play</Link>
+          </button>}
 
-        {page === 'home' && savedCards.length > 0 ? <button onClick={() => setPage('saved')}><Link to='/saved'>Saved Cards</Link></button> : ""}
-        <button onClick={() => setPage('saved')}><Link to='/saved'>Saved Cards</Link></button>
+        {page !== 'home' && 
+          <button onClick={(event) => goToPage(event, 'home')}>
+            <Link to='/home'>Home</Link>
+          </button>}
+
+        {page === 'home' && 
+          <button onClick={(event) => goToPage(event, 'about')}>
+            <Link to='/about'>About</Link>
+          </button>}
+
+        {page === 'home' && 
+          <button onClick={(event) => goToPage(event, 'start')}>
+            <Link to='/start'>Start</Link>
+          </button>}
+
+        {page === 'gameover' && 
+          <button onClick={(event) => goToPage(event, 'start')}>
+            <Link to='/start'>Start</Link>
+          </button>}
+
+        {savedCards.current.length >= 1 && 
+          <button onClick={(event) => goToPage(event, 'saved')}>
+            <Link to='/saved'>Saved Cards</Link>
+          </button>}
       </nav>
 
     </section>

@@ -1,15 +1,14 @@
 import React, {useRef, useState} from "react";
 import PropTypes from 'prop-types'
 import Card from "./Card/Card.js";
-import CountDown from 'react-countdown'
+import GameOver from "../GameOver/GameOver.js";
 
-const Game = ({ cardsData, shuffle, saveCardForLater }) => {  
+const Game = ({ cardsData, shuffle, saveCardForLater, gameOver, resetTimer }) => {  
   const cardsFlipped = useRef(0)
   const correctGuesses = useRef(0)
   const incorrectGuesses = useRef(0)
   const [carouselIndex, setCarouselIndex] = useState(0)
   // const [carouselIndex, setCarouselIndex] = useState(0)
-  const [gameOver, setGameOver] = useState(false)
 
   const flipCard = () => {
     cardsFlipped.current = cardsFlipped.current + 1
@@ -44,10 +43,6 @@ const Game = ({ cardsData, shuffle, saveCardForLater }) => {
   }
 
   const cards = cardsData.map((card, index) => {
-    console.log("card index:", index)
-    console.log("carouselIndex", carouselIndex)
-
-
     const currentSymbol = card.symbol
 
 
@@ -69,25 +64,12 @@ const Game = ({ cardsData, shuffle, saveCardForLater }) => {
     )
   })
 
-  // countdown
-  const renderer = ({ hours, minutes, seconds, completed }) => {
-    if (completed) {
-      setGameOver(true)
-      return <span>GAME OVER!</span>;
-    } else {
-      return <span>{minutes}:{seconds}</span>;
-    }
-  }
-
   return (
     <section className='carousel-container'>
-      <span className="countdown column">
-      <CountDown date={Date.now() + 180000} renderer={renderer} />
-      </span>
       <div className="carousel column">
         <div className="carousel-item column">
           {!gameOver && cards}
-          {/* {gameOver && Game Over} */}
+          {gameOver && <GameOver cardsFlipped={cardsFlipped.current} correctGuesses={correctGuesses.current} resetTimer={resetTimer} />}
         </div>
       </div>
     </section>
@@ -97,7 +79,9 @@ const Game = ({ cardsData, shuffle, saveCardForLater }) => {
 Game.propTypes = {
   cardsData: PropTypes.array,
   shuffle: PropTypes.func,
-  saveCardForLater: PropTypes.func
+  saveCardForLater: PropTypes.func,
+  gameOver: PropTypes.bool,
+  resetTimer: PropTypes.func
 }
 
 export default Game
