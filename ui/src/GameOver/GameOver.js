@@ -13,7 +13,9 @@ const GameOver = ({cardsFlipped, correctGuesses, resetTimer}) => {
       <p>Congratulations, you got {correctGuesses} out of {cardsFlipped} correct for {Math.floor((correctGuesses / cardsFlipped) * 100)}% correct!</p>
       <p>Click here to learn more about the ADL and it's work.</p>
       <p>Start a new game or study your saved cards.</p>
-      <button>ADL</button>
+      <a className='column' href='https://www.adl.org' target="_blank" >
+        <button>Learn more about ADL</button>
+      </a>
     </section>
   )
 }
