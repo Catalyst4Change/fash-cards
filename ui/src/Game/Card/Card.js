@@ -1,16 +1,17 @@
 import React, {useState} from "react";
 import PropTypes from 'prop-types' 
 
-const Card = ({ card, answerButtons, flipCard, addOneCorrect, addOneIncorrect, saveCardForLater}) => {
+const Card = ({ card, cardNumber, answerButtons, flipCard, addOneCorrect, addOneIncorrect, saveCardForLater, nextSlide}) => {
   const {symbol, image, desc} = card
   const [flip, setFlip] = useState(false)
   const [answered, setAnswered] = useState('')
   const [saved, setSaved] = useState(false)
+
   
   const makeButtons = () => {
-    return answerButtons.map(button => {
+    return answerButtons.map((button, index) => {
       return (
-        <button id={button} onClick={(event) => checkCorrect(event, button, symbol)}>{button}</button>
+        <button key={"button" + index} id={button} onClick={(event) => checkCorrect(event, button, symbol)}>{button}</button>
       )
     })
   }
@@ -76,7 +77,7 @@ const Card = ({ card, answerButtons, flipCard, addOneCorrect, addOneIncorrect, s
         </div>
 
         <div className=" card-answers column">
-          {answered && <button>NEXT</button>}
+          {answered && <button onClick={nextSlide}>NEXT</button>}
           {!answered && makeButtons()}
         </div>
       </div>
@@ -86,12 +87,13 @@ const Card = ({ card, answerButtons, flipCard, addOneCorrect, addOneIncorrect, s
 
 Card.propTypes = {
   card: PropTypes.object,
+  cardNumber: PropTypes.number,
   answerButtons: PropTypes.array,
   flipCard: PropTypes.func,
   addOneCorrect: PropTypes.func,
   addOneIncorrect: PropTypes.func,
-  saveCardForLater: PropTypes.func
+  saveCardForLater: PropTypes.func,
+  nextSlide: PropTypes.func
 }
-
 
 export default Card

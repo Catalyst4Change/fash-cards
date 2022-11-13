@@ -7,6 +7,8 @@ const Game = ({ cardsData, shuffle, saveCardForLater }) => {
   const cardsFlipped = useRef(0)
   const correctGuesses = useRef(0)
   const incorrectGuesses = useRef(0)
+  const [carouselIndex, setCarouselIndex] = useState(0)
+  // const [carouselIndex, setCarouselIndex] = useState(0)
   const [gameOver, setGameOver] = useState(false)
 
   const flipCard = () => {
@@ -20,52 +22,74 @@ const Game = ({ cardsData, shuffle, saveCardForLater }) => {
   const addOneIncorrect = () => {
     incorrectGuesses.current = incorrectGuesses.current + 1
   }
-  
-  const shuffledCards = shuffle(cardsData)
 
-  const cards = shuffledCards.slice(0,10).map(card => {
+  const nextSlide = () => {
+    setCarouselIndex(carouselIndex + 1)
+  }
+  
+
+  const makeButtons = (currentSymbol) => {
+    const answers = []
+    answers.push(currentSymbol)
+    
+    for (let i = 0; i < 3; i++) {
+      const random = Math.floor(Math.random() * 200)
+      if (!answers.includes(cardsData[random])) {
+        answers.push(cardsData[random].symbol)
+      }        
+    }
+    
+    shuffle(answers)
+    return answers
+  }
+
+  const cards = cardsData.map((card, index) => {
+    console.log("card index:", index)
+    console.log("carouselIndex", carouselIndex)
+
+
     const currentSymbol = card.symbol
 
-    const makeButtons = (currentSymbol) => {
-      const answers = []
-      answers.push(currentSymbol)
-      
-      const answerPool = shuffledCards.slice(-200, shuffledCards.length)
-      for (let i = 0; i < 3; i++) {
-        const random = Math.floor(Math.random() * 200)
-        if (!answers.includes(answerPool[random])) {
-          answers.push(answerPool[random].symbol)
-        }        
-      }
-      
-      shuffle(answers)
-      return answers
-    }
 
     const answerButtons = makeButtons(currentSymbol)
     
     return (
-      <article className="card-section column"> 
-        <Card card={card} answerButtons={answerButtons} flipCard={flipCard} addOneCorrect={addOneCorrect} addOneIncorrect={addOneIncorrect} saveCardForLater={saveCardForLater} />
+      <article className={`card-section column  ${index === carouselIndex ? 'focus' : 'hidden'}`} key={`card${index}`}> 
+        <Card 
+        card={card} 
+        cardNumber={index}
+        answerButtons={answerButtons} 
+        flipCard={flipCard} 
+        addOneCorrect={addOneCorrect} 
+        addOneIncorrect={addOneIncorrect} 
+        saveCardForLater={saveCardForLater} 
+        nextSlide={nextSlide}
+        />
       </article>
     )
   })
 
+  // countdown
   const renderer = ({ hours, minutes, seconds, completed }) => {
     if (completed) {
+      setGameOver(true)
       return <span>GAME OVER!</span>;
     } else {
       return <span>{minutes}:{seconds}</span>;
     }
   }
 
-
   return (
-    <section className='card-carousel'>
+    <section className='carousel-container'>
       <span className="countdown column">
       <CountDown date={Date.now() + 180000} renderer={renderer} />
       </span>
-      {!gameOver && cards}
+      <div className="carousel column">
+        <div className="carousel-item column">
+          {!gameOver && cards}
+          {/* {gameOver && Game Over} */}
+        </div>
+      </div>
     </section>
   )
 }

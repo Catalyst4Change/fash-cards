@@ -5,6 +5,13 @@
   align-items: center;
 }
 
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
 section {
   width: 100%;
 }
@@ -121,4 +128,26 @@ a {
   max-height: none;
   width: 80vw;
   max-width: none;
+}
+
+.carousel {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.card-section {
+  
+}
+
+.carousel-item {
+transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);  
+}
+
+.hidden {
+  display: none;
+}
+
+.focus {
+  display: inherit;
 }

@@ -10,11 +10,12 @@ import './App.css';
 
 function App() {
   const [page, setPage] = useState('home')
-  const [cardsData, setCardsData] = useState([])
+  const [cardsData, setCardsData] = useState([]) 
+  // const cardsRef = useRef([])
   const savedCards = useRef([])
   
   useEffect(() => {
-    fetchData().then(data => setCardsData(data))
+    fetchData().then(data => setCardsData(shuffle(data)))
   },[])
 
   const shuffle = (array) => {
