@@ -6,7 +6,8 @@
 ![fash-cards game card](https://github.com/Catalyst4Change/fash-cards/blob/main/server/media/Screenshot%202022-11-13%20at%2011.44.02%20PM.png?raw=true)
 
 Table of Contents  
-[Local Setup](#local-setup-instructions)  
+[Local Setup](#local-setup-instructions)    
+[Web Deployment](#deployment)   
 [Why?](#but-why)  
 [User Stories](#user-stories)  
 
@@ -36,6 +37,10 @@ Phases:
 - `$ cd fash-cards/ui`
 - `$ npm install`
 - `$ npm start`  
+
+## Deployment
+Due to the complicated nature of this project, for deployment I had to build a different repo that does not use the scraper or API.
+It can be found [here](https://fash-cards-deployable.vercel.app/game) and works very well on phones!
 
 ## Instructions & Features:
 Upon launching the app, the user has the option to visit an About page and discover more about the app and why it exists. To play the game - in name, but not in spirit - click 'Start' and they are presented with simple instructions. One can view a card representing a white-supremacist symbol or icon and guess which of the multiple-choice answers is correct. Clicking the blue arrows icon will flip it over so you can read about this symbol's origins. Clicking the floppy disc will save the card to be viewed later. After one minute has elapsed, the game is over and you are presented with your score. From there you can visit the ADL's website, or initiate a new game and attempt to beat your previous score. The game was designed to be played in vertical mode on a phone.
