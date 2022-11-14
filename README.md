@@ -1,7 +1,8 @@
 # Fash Cards
 ## Turing Mod 3 Final Solo Project by Catalyst
 
-![fash-cards logo](https://github.com/Catalyst4Change/fash-cards/blob/main/server/media/Screenshot%202022-11-13%20at%2011.42.42%20PM.png?raw=true)
+![fash-cards logo](https://github.com/Catalyst4Change/fash-cards/blob/main/server/media/Screenshot%202022-11-13%20at%2011.42.42%20PM.png?raw=true)   
+
 ![fash-cards game card](https://github.com/Catalyst4Change/fash-cards/blob/main/server/media/Screenshot%202022-11-13%20at%2011.44.02%20PM.png?raw=true)
 
 Table of Contents  
