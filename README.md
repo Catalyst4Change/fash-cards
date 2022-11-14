@@ -81,6 +81,7 @@ I am extremely proud of this app. It represents a patriotic effort, a technical 
 ## Challenges
 At several points along the way, I experienced significant problems with GitHub. More than once I had the error `There isn't anything to compare. Branches are entirely different commit histories.` I imagine this happened as I was combining previously separate projects into a single folder. I Googled around trying to find a solution to this problem, but ultimately settled on the tried and true tactic, "Burn it down and start over." Because of this, all of my early commits are unfortunately lost.   
 At several points, I was confronted with infinite loops and memory leaks. Remember to close your `useEffect()`s, kids!    
+
 I experienced a lot of stress and inner turmoil during the creation of this app. The heavy nature of the source material alone was kind of exhausting. On top of that was the tiered nature of a multi-step pipeline. I couldn't work on the app until the server was up and I couldn't set that up until I had scraped all the data. I didn't even get around to applying a shiny CSS coat to it, so it exists as a stark and simplistic black-on-white. Actually, I wouldn't want to make it *too* fun looking and trivialize the content.
 
 ## Doumo Arigato Gozaimasu!
