@@ -88,22 +88,40 @@ const App = () => {
         {error && <h2>{error.message}</h2>}
 
         {pathname.includes('start') && 
-          <Link to='/game'><button onClick={startTimer}>Play</button></Link>}
+          <Link to='/game'><button onClick={startTimer}>Play</button></Link>
+        }
 
         {!pathname.includes('home') && 
-          <Link to='/home'><button onClick={resetTimer}>Home</button></Link>}
+          <Link to='/home'><button onClick={resetTimer}>Home</button></Link>
+        }
 
         {pathname.includes('home') && 
-          <Link to='/about'><button onClick={resetTimer}>About</button></Link>}
+          <Link to='/about'><button onClick={resetTimer}>About</button></Link>
+        }
 
         {!error && pathname.includes('home') && 
-          <Link to='/start'><button onClick={resetTimer}>Start</button></Link>}
+          <Link to='/start'><button onClick={resetTimer}>Start</button></Link>
+        }
 
         {pathname.includes('gameover') && 
-          <Link to='/start'><button onClick={resetTimer}>New Game</button></Link>}
+          <Link to='/start'><button onClick={resetTimer}>New Game</button></Link>
+        }
 
-        {savedCards.current.length >= 1 && 
-          <Link to='/saved'><button onClick={resetTimer}>Saved Cards</button></Link>}
+        {pathname.includes('home') && savedCards.current.length >= 1 && 
+          <Link to='/saved'><button onClick={resetTimer}>Saved Cards</button></Link>
+        }
+
+        {pathname.includes('gameover') && 
+        <a href='https://www.adl.org' target="_blank" >
+          <button>Learn more about ADL</button>
+        </a>
+        }
+        
+        {pathname.includes('about') && 
+        <a href='https://www.adl.org' target="_blank" >
+          <button>Learn more about ADL</button>
+        </a>
+        }
 
       </nav>
 
