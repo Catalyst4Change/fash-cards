@@ -1,15 +1,17 @@
 import React, {useState} from "react";
 import PropTypes from 'prop-types' 
 
-const Card = ({ card, answerButtons, flipCard, addOneCorrect, addOneIncorrect}) => {
+const Card = ({ card, cardNumber, answerButtons, flipCard, addOneCorrect, addOneIncorrect, saveCardForLater, nextSlide}) => {
   const {symbol, image, desc} = card
   const [flip, setFlip] = useState(false)
   const [answered, setAnswered] = useState('')
+  const [saved, setSaved] = useState(false)
+
   
   const makeButtons = () => {
-    return answerButtons.map(button => {
+    return answerButtons.map((button, index) => {
       return (
-        <button type="button" id={button} onClick={(event) => checkCorrect(event, button, symbol)}>{button}</button>
+        <button key={"button" + index} id={button} onClick={(event) => checkCorrect(event, button, symbol)}>{button}</button>
       )
     })
   }
@@ -37,8 +39,17 @@ const Card = ({ card, answerButtons, flipCard, addOneCorrect, addOneIncorrect}) 
     console.log('wrong!');
   }
 
+  const justChecking = () => {
+    setFlip(!flip)
+  }
+
+  const saveCard = () => {
+    setSaved(true)
+    saveCardForLater(card)
+  }
+
   return (
-    <section className=" card-section column"> 
+    <section className="card-section column"> 
       <div className="card-container column">
         <div className={`card column ${flip ? 'flip' : ''}`}>
 
@@ -56,24 +67,33 @@ const Card = ({ card, answerButtons, flipCard, addOneCorrect, addOneIncorrect}) 
         </div>  
       </div>
 
-      <div className="card-options">
-        <div className="column">
-          {answered && <button>NEXT</button>}
+      <div className="column">
+        <div className="card-options">
+          {!saved && <span className="card-option-emoji" onClick={saveCard}>💾</span>}
+          {saved && <span className="card-option-emoji">✅</span>}
+          
+          <span className="card-option-emoji" onClick={justChecking}>🔄</span>
+
+        </div>
+
+        <div className=" card-answers column">
+          {answered && <button onClick={nextSlide}>NEXT</button>}
           {!answered && makeButtons()}
         </div>
       </div>
     </section>
   )
-
 }
 
 Card.propTypes = {
   card: PropTypes.object,
+  cardNumber: PropTypes.number,
   answerButtons: PropTypes.array,
   flipCard: PropTypes.func,
   addOneCorrect: PropTypes.func,
-  addOneIncorrect: PropTypes.func
+  addOneIncorrect: PropTypes.func,
+  saveCardForLater: PropTypes.func,
+  nextSlide: PropTypes.func
 }
-
 
 export default Card

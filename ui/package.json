@@ -10,6 +10,7 @@
     "prop-types": "^15.8.1",
     "puppeteer": "^19.2.2",
     "react": "^18.2.0",
+    "react-countdown": "^2.3.3",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
@@ -42,5 +43,8 @@
   "main": "index.js",
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "cypress": "^11.0.1"
+  }
 }

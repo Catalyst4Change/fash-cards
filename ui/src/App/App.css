@@ -5,6 +5,13 @@
   align-items: center;
 }
 
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
 section {
   width: 100%;
 }
@@ -43,7 +50,7 @@ p {
 button {
   background-color: white;
   border-radius: .25em;
-  font-size: 2em;
+  font-size: 1.5em;
   width: 80vw;
   margin: 2.5%;
 }
@@ -59,7 +66,7 @@ a {
   border-radius: 1em;
   width: 80vw;
   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.5);
-  height: 50vh;
+  height: 40vh;
 }
 
 .card-image-container {
@@ -79,7 +86,7 @@ a {
   justify-content: space-around;
 }
 
-.card-option {
+.card-option-emoji {
   font-size: 3em;
 }
 
@@ -109,4 +116,34 @@ a {
 
 .rightAnswer {
   background-color: green;
+}
+
+.countdown {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.saved {
+  height: 150%;
+  max-height: none;
+  width: 80vw;
+  max-width: none;
+}
+
+.carousel {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.carousel-item {
+transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);  
+}
+
+.hidden {
+  display: none;
+}
+
+.focus {
+  display: inherit;
 }
