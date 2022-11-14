@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Routes, Route, Link, Navigate } from 'react-router-dom';
+import { Routes, Route, Link, Navigate, useLocation } from 'react-router-dom';
 import About from '../About/About.js';
 import fetchData from '../APIcalls/APIcalls.js';
 import Start from '../NewGame/Start.js';
@@ -12,19 +12,17 @@ import CountDown from 'react-countdown'
 
 
 const App = () => {
-  const [page, setPage] = useState('home')
   const [cardsData, setCardsData] = useState([]) 
-  // const cardsRef = useRef([])
   const savedCards = useRef([])
   const [gameOver, setGameOver] = useState(false)
   const [timer, setTimer] = useState(false)
+  const [error, setError] = useState('')
 
+  const {pathname} = useLocation()
 
-
-  console.log(page);
-  
   useEffect(() => {
     fetchData().then(data => setCardsData(shuffle(data)))
+    .catch(error => setError(error))
   },[])
 
   const shuffle = (array) => {
@@ -42,18 +40,11 @@ const App = () => {
   }
 
   const saveCardForLater = (card) => {
-    console.log("saved!")
     const savedCardsCopy = savedCards.current;
     savedCardsCopy.push(card)
     savedCards.current = savedCardsCopy
-    console.log(savedCards.current)
   }
   
-  const goToPage = (event, page) => {
-    setPage(page)
-    console.log(event.target.href)
-  }
-
   const startTimer = () => {
     setTimer(true)
   }
@@ -63,8 +54,6 @@ const App = () => {
   }
 
   // countdown
-
-
   const renderer = ({ hours, minutes, seconds, completed }) => {
     if (completed) {
       setGameOver(true)
@@ -73,7 +62,6 @@ const App = () => {
       return <span>{minutes}:{seconds}</span>;
     }
   }
-  
 
   return (
     <section className="App column">
@@ -97,35 +85,26 @@ const App = () => {
       </Routes>
 
       <nav className='column'>
-        {page === 'start' && 
-          <button onClick={(event) => {goToPage(event, 'game'); startTimer()}}>
-            <Link to='/game'>Play</Link>
-          </button>}
+        {error && <h2>{error.message}</h2>}
 
-        {page !== 'home' && 
-          <button onClick={(event) => goToPage(event, 'home')}>
-            <Link to='/home'>Home</Link>
-          </button>}
+        {pathname.includes('start') && 
+          <Link to='/game'><button onClick={startTimer}>Play</button></Link>}
 
-        {page === 'home' && 
-          <button onClick={(event) => goToPage(event, 'about')}>
-            <Link to='/about'>About</Link>
-          </button>}
+        {!pathname.includes('home') && 
+          <Link to='/home'><button onClick={resetTimer}>Home</button></Link>}
 
-        {page === 'home' && 
-          <button onClick={(event) => goToPage(event, 'start')}>
-            <Link to='/start'>Start</Link>
-          </button>}
+        {pathname.includes('home') && 
+          <Link to='/about'><button onClick={resetTimer}>About</button></Link>}
 
-        {page === 'gameover' && 
-          <button onClick={(event) => goToPage(event, 'start')}>
-            <Link to='/start'>Start</Link>
-          </button>}
+        {!error && pathname.includes('home') && 
+          <Link to='/start'><button onClick={resetTimer}>Start</button></Link>}
+
+        {pathname.includes('gameover') && 
+          <Link to='/start'><button onClick={resetTimer}>New Game</button></Link>}
 
         {savedCards.current.length >= 1 && 
-          <button onClick={(event) => goToPage(event, 'saved')}>
-            <Link to='/saved'>Saved Cards</Link>
-          </button>}
+          <Link to='/saved'><button onClick={resetTimer}>Saved Cards</button></Link>}
+
       </nav>
 
     </section>
