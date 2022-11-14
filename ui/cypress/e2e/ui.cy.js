@@ -80,7 +80,7 @@ describe('ui tests', () => {
     cy.get('[href="/start"] > button').click() // click 'Start'
     cy.get('[href="/game"] > button').click() // click 'Play'
     cy.wait(60500) // wait 60.5 seconds for game to end
-    cy.get('#root > section > nav > a:nth-child(2)').should('have.attr', 'href', 'https://www.adl.org').children().should('have.text', 'Learn more about ADL') // verify button contains text and link
+    cy.get('#root > section > nav > div > a:nth-child(2)').should('have.attr', 'href', 'https://www.adl.org').children().should('have.text', 'Learn more about ADL') // verify button contains text and link
   });
 
 })
