@@ -2,12 +2,52 @@
 ## Turing Mod 3 Final Solo Project by Catalyst
 
 Table of Contents  
-[Phases](#this-project-occurred-in-four-phases)  
+[Local Setup](#local-setup-instructions)  
+[Why?](#but-why)  
+[User Stories](#user-stories)  
+
+Phases:  
+[Web Scraping](#web-scraping)  
+[Express API](#launching-the-api)  
+[React](#building-the-react-app)  
+[Testing](#testing-with-cypress)
+
+[Wins](#wins)  
+[Challenges](#challenges)   
+[Thanks](#doumo-arigato-gozaimasu)
+
+## Local Setup Instructions:
+- Initialize a new repository on your local machine:
+- `$ git clone git@github.com:Catalyst4Change/fash-cards.git`
+- `$ cd fash-cards`
+- Get newest ADL database info:
+- `$ cd fash-cards/web-scraper`
+- `$ npm install puppeteer`
+- `$ node scraper.js` (note: this will not work if you have a VPN online.)
+- Activate Hate-abase:
+- `$ cd fash-cards/server`
+- `$ npm install express`
+- `$ node server.js` 
+- Run React UI:
+- `$ cd fash-cards/ui`
+- `$ npm install`
+- `$ npm start`  
+- Instructions lie within the Start menu on the Home screen.
 
 ## ...But why?
 I was inspired to do this project because:  
 I cannot stop myself from overcomplicating things, and  
 It is obvious to me that fascism, hate, and bigotry are on the rise in America (and elsewhere round the world). It is important for anyone who cares about this country, it's people, and it's future to be aware of the threats to our safety and our democracy.  
+
+## User Stories:
+For this app I considered two hypothetical users. Both have different motivations but could benefit from interacting with the program.
+### “Jazz” 
+is a twenty-something, middle-class, community-college student. They are active in online debates and calling out racism and sexism when they see it in the world. They consider themselves ‘woke’ but have not taken active steps to educate themselves about the numerous hate-groups and paramilitary militias that threaten their comfortable way of life.  
+A ‘Zoomer’, Jazz has a comfortable, intuitive grasp on technology and is not intimidated by bad UI. However, with an infinite ocean of digital entertainment and education options at their disposal, any interaction needs to grab and hold their attention or risk being dismissed forever.  
+
+### “Marcia” 
+is largely oblivious of the threats to peace and democracy posed by extremist groups in America. She is a white woman in her mid 60s and has a more-than-full-time-job taking care of her ailing, elderly mother without much help from the rest of the family. She thinks her openly anti-semitist brother-in-law can be a jerk, but he’s nice to her so he can’t be all bad, right?  
+Marcia doesn’t have much free time and is not great with technology, so any interaction with a screen needs to be straight-forward and brief. She is not very interested in learning about skinhead prison gangs and neo-nazis, but she does enjoy quick memory challenges and facebook quizzes to share with her friends.  
 
 ## This project occurred in four phases:
 ### Web Scraping
@@ -24,20 +64,16 @@ I had a lot of issues getting the cards to render right and have the generated b
 After several unsuccessful attempts to build my own countdown timer, I finally installed [react-countdown](https://github.com/ndresx/react-countdown). Using a [this how-to](), I was able to implement a flipping animation for the cards. Between [this video](https://www.youtube.com/watch?v=l1MYfu5YWHc&t=30s) and [this article](https://blog.bitsrc.io/simple-carousel-in-react-2aac73887243) I was able to cobble together a carousel-like function to display only one card object at a time.  
 
 ### Testing with Cypress  
+Testing was easy compared to choreographing all the intricate details of this fairly complex app. I was able to capture the dom elements I wanted to test and verify their data and functions. The worst part was waiting an *entire minute* for every 'Game Over' test to pass or fail!  
+I extensively tested the UI and added a test for API failure-to-fetch.
 
-## also:
-2 user personas
-user stories that articulate how the app should perform
+## Wins
+I am extremely proud of this app. It represents a patriotic effort, a technical achievement, and an expression of my personal values. In particular, the way the scraper pulls the data, formats it, and deposits it straight into the server folder which then re-broadcasts it made me feel like a true hacker!
 
-## Problems
+## Challenges
 At several points along the way, I experienced significant problems with GitHub. More than once I had the error `There isn't anything to compare. Branches are entirely different commit histories.` I imagine this happened as I was combining previously separate projects into a single folder. I Googled around trying to find a solution to this problem, but ultimately settled on the tried and true tactic, "Burn it down and start over." Because of this, all of my early commits are unfortunately lost. 
-
 At several points, I was confronted with infinite loops and memory leaks. Remember to close your `useEffect()`s, kids!
+I experienced a lot of stress and inner turmoil during the creation of this app. The heavy nature of the source material alone was kind of exhausting. On top of that was the tiered nature of a multi-step pipeline. I couldn't work on the app until the server was up and I couldn't set that up until I had scraped all the data. I didn't even get around to applying a shiny CSS coat to it, so it exists as a stark and simplistic black-on-white. Actually, I wouldn't want to make it *too* fun looking and trivialize the content.
 
-
-images
-wins and challenges
-goals
-local set up instructions
-link to deployment
-team member credits and links
+## Doumo Arigato Gozaimasu!
+Extra Big Ass thank yous to my mentor, Alia (who I'm beginning to suspect is getting sick of my incessant questions ;p); my friends Evan and Grace for your help and encouragement; my cohort-mates and instructors, for your patience and assistance; and my Lovelies, for keeping me afloat in the storm. Much Love.

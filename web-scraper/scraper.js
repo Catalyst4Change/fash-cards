@@ -41,5 +41,7 @@ import fs from 'fs/promises'
   } 
   await fs.writeFile("../server/data.json", JSON.stringify(hateSymbols()))
 
-  await browser.close();
+  console.log(hateSymbols) // for dramatic effect
+
+  await browser.close()
 })();
