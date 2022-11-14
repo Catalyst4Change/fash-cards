@@ -65,7 +65,7 @@ describe('ui tests', () => {
     cy.get('.logo').should('be.visible').contains('🤬') // verify Home page
   })
 
-  it.skip('should be able to click answer buttons, game-over after one minute and present you with your score', () => {
+  it('should be able to click answer buttons, game-over after one minute and present you with your score', () => {
     cy.get('[href="/start"] > button').click() // click 'Start'
     cy.get('[href="/game"] > button').click() // click 'Play'
     Cypress._.times(50, () => {
@@ -73,14 +73,14 @@ describe('ui tests', () => {
       cy.wait(500)
     }) // click top answer and then NEXT button 25 times each
     cy.wait(30000) // wait 30 sec
-    cy.get('.carousel-item > .column > :nth-child(2)').should('be.visible').contains('%') // verify game over screen text includes a percentage
+    cy.get('#root > section > section > p:nth-child(2)').should('be.visible').contains('%') // verify game over screen text includes a percentage
   })
 
-  it.skip('should present a link to the ADL on the Game Over screen', () => {
+  it('should present a link to the ADL on the Game Over screen', () => {
     cy.get('[href="/start"] > button').click() // click 'Start'
     cy.get('[href="/game"] > button').click() // click 'Play'
     cy.wait(60500) // wait 60.5 seconds for game to end
-    cy.get('#root > section > section > div > div > section > a').should('have.attr', 'href', 'https://www.adl.org').children().should('have.text', 'Learn more about ADL') // verify button contains text and link
+    cy.get('#root > section > nav > a:nth-child(2)').should('have.attr', 'href', 'https://www.adl.org').children().should('have.text', 'Learn more about ADL') // verify button contains text and link
   });
 
 })

@@ -103,10 +103,6 @@ const App = () => {
           <Link to='/start'><button onClick={resetTimer}>Start</button></Link>
         }
 
-        {pathname.includes('gameover') && 
-          <Link to='/start'><button onClick={resetTimer}>New Game</button></Link>
-        }
-
         {pathname.includes('home') && savedCards.current.length >= 1 && 
           <Link to='/saved'><button onClick={resetTimer}>Saved Cards</button></Link>
         }
@@ -116,7 +112,7 @@ const App = () => {
           <button>Learn more about ADL</button>
         </a>
         }
-        
+
         {pathname.includes('about') && 
         <a href='https://www.adl.org' target="_blank" >
           <button>Learn more about ADL</button>
