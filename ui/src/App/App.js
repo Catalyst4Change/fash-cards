@@ -51,6 +51,7 @@ const App = () => {
 
   const resetTimer = () => {
     setTimer(false)
+    setGameOver(false)
   }
 
   // countdown
@@ -108,9 +109,12 @@ const App = () => {
         }
 
         {pathname.includes('gameover') && 
-        <a href='https://www.adl.org' target="_blank" >
-          <button>Learn more about ADL</button>
-        </a>
+        <div className='column'>
+          <Link to='/game'><button onClick={startTimer}>Play Again</button></Link>
+          <a href='https://www.adl.org' target="_blank" >
+            <button>Learn more about ADL</button>
+          </a>
+        </div>
         }
 
         {pathname.includes('about') && 
