@@ -1,39 +1,28 @@
-import React, {useRef, useState} from "react"
-import PropTypes from 'prop-types'
+import React from "react";
 
-const Saved = ({ savedCards }) => {  
-
+const Saved = ({ savedCards }) => {
   const cards = savedCards.map((card, index) => {
-    const {symbol, image, desc} = card  
+    const { symbol, image, desc } = card;
 
     return (
       <div key={"saved" + index} className="column">
         <div className={" saved card  column "}>
-          <div className="saved card-image-container column"> 
+          <div className="saved card-image-container column">
             <h3 className="column">{symbol}</h3>
-            <img className=" card-image" src={image} />
+            <img className=" card-image" src={image} alt="card" />
           </div>
-            <p>{desc}</p>
+          <p>{desc}</p>
         </div>
       </div>
-    )
-  })
+    );
+  });
 
   return (
-    <section className='card-carousel'>
-      <h2 className="countdown column">
-        Your saved cards:
-      </h2>
+    <section className="card-carousel">
+      <h2 className="countdown column">Your saved cards:</h2>
       {cards}
     </section>
-  )
-}
+  );
+};
 
-Saved.propTypes = {
-  savedCards: PropTypes.array,
-}
-
-export default Saved
-
-
-
+export default Saved;

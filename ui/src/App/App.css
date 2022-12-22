@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 }
 
 section {
@@ -49,7 +49,7 @@ p {
 
 button {
   background-color: white;
-  border-radius: .25em;
+  border-radius: 0.25em;
   font-size: 1.5em;
   width: 80vw;
   margin: 2.5%;
@@ -69,6 +69,10 @@ a {
   height: 40vh;
 }
 
+.card-answer-feedback {
+  font-size: 2em;
+}
+
 .card-image-container {
   width: 80vw;
   height: 40vh;
@@ -81,9 +85,9 @@ a {
 }
 
 .card-options {
-  width: 100%;
+  width: 75%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .card-option-emoji {
@@ -95,7 +99,8 @@ a {
 .card {
   transform-style: preserve-3d;
   transition: 150ms;
-  transform: perspective(1000px) rotateY(var(--rotate-y,0)) translateY(var(--translate-y, 0));
+  transform: perspective(1000px) rotateY(var(--rotate-y, 0))
+    translateY(var(--translate-y, 0));
 }
 
 .card.flip {
@@ -137,7 +142,7 @@ a {
 }
 
 .carousel-item {
-transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);  
+  transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .hidden {

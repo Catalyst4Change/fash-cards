@@ -1,17 +1,30 @@
-import React, {useState} from "react";
-import PropTypes from 'prop-types' 
+import React, { useState } from "react"
 
-const Card = ({ card, cardNumber, answerButtons, flipCard, addOneCorrect, addOneIncorrect, saveCardForLater, nextSlide}) => {
-  const {symbol, image, desc} = card
+const Card = ({
+  card,
+  cardNumber,
+  answerButtons,
+  flipCard,
+  addOneCorrect,
+  addOneIncorrect,
+  saveCardForLater,
+  nextSlide,
+}) => {
+  const { symbol, image, desc } = card
   const [flip, setFlip] = useState(false)
-  const [answered, setAnswered] = useState('')
+  const [answered, setAnswered] = useState("")
   const [saved, setSaved] = useState(false)
 
-  
   const makeButtons = () => {
     return answerButtons.map((button, index) => {
       return (
-        <button key={"button" + index} id={button} onClick={(event) => checkCorrect(event, button, symbol)}>{button}</button>
+        <button
+          key={"button" + index}
+          id={button}
+          onClick={(event) => checkCorrect(event, button, symbol)}
+        >
+          {button}
+        </button>
       )
     })
   }
@@ -25,18 +38,18 @@ const Card = ({ card, cardNumber, answerButtons, flipCard, addOneCorrect, addOne
       answerWrong()
     }
   }
-  
+
   const answerCorrect = () => {
-    setAnswered('correct')
+    setAnswered("correct")
     addOneCorrect()
     console.log("correct!")
   }
-  
+
   const answerWrong = () => {
-    setAnswered('wrong')
+    setAnswered("incorrect")
     addOneIncorrect()
     setFlip(!flip)
-    console.log('wrong!');
+    console.log("incorrect!")
   }
 
   const justChecking = () => {
@@ -49,51 +62,51 @@ const Card = ({ card, cardNumber, answerButtons, flipCard, addOneCorrect, addOne
   }
 
   return (
-    <section className="card-section column"> 
+    <section className="card-section column">
       <div className="card-container column">
-        <div className={`card column ${flip ? 'flip' : ''}`}>
-
+        <div className={`card column ${flip ? "flip" : ""}`}>
           <div className="front">
-            <div className="card-image-container column"> 
-              <img className="card-image" src={image} />
+            <div className="card-image-container column">
+              <img className="card-image" src={image} alt="card" />
             </div>
           </div>
 
           <div className="back">
-            <div className="card-description column"> 
+            <div className="card-description column">
               <p>{desc}</p>
             </div>
           </div>
-        </div>  
+        </div>
       </div>
 
       <div className="column">
-        <div className="card-options">
-          {!saved && <span className="card-option-emoji" onClick={saveCard}>💾</span>}
+        <div className="card-options row centerx">
+          {!saved && (
+            <span className="card-option-emoji" onClick={saveCard}>
+              💾
+            </span>
+          )}
           {saved && <span className="card-option-emoji">✅</span>}
-          
-          <span className="card-option-emoji" onClick={justChecking}>🔄</span>
 
+          {answered === "correct" && (
+            <div className="card-answer-feedback correct-answer">Correct!</div>
+          )}
+          {answered === "incorrect" && (
+            <div className="card-answer-feedback incorrect-answer">
+              Incorrect!
+            </div>
+          )}
+          <span className="card-option-emoji" onClick={justChecking}>
+            🔄
+          </span>
         </div>
-
-        <div className=" card-answers column">
+        <div className="card-answers column">
           {answered && <button onClick={nextSlide}>NEXT</button>}
           {!answered && makeButtons()}
         </div>
       </div>
     </section>
   )
-}
-
-Card.propTypes = {
-  card: PropTypes.object,
-  cardNumber: PropTypes.number,
-  answerButtons: PropTypes.array,
-  flipCard: PropTypes.func,
-  addOneCorrect: PropTypes.func,
-  addOneIncorrect: PropTypes.func,
-  saveCardForLater: PropTypes.func,
-  nextSlide: PropTypes.func
 }
 
 export default Card

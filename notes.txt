@@ -1,0 +1,3 @@
+[ ] add feedback on guesses
+[ ] ff: img on back of card
+[ ] broken math on game over

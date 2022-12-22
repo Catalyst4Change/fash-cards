@@ -1,7 +1,6 @@
-import React, { useRef, useState } from "react";
-import PropTypes from "prop-types";
-import Card from "../Card/Card.js";
-import GameOver from "../GameOver/GameOver.js";
+import React, { useRef, useState } from "react"
+import Card from "../Card/Card.js"
+import GameOver from "../GameOver/GameOver.js"
 
 const Game = ({
   cardsData,
@@ -10,47 +9,47 @@ const Game = ({
   gameOver,
   resetTimer,
 }) => {
-  const cardsFlipped = useRef(0);
-  const correctGuesses = useRef(0);
-  const incorrectGuesses = useRef(0);
-  const [carouselIndex, setCarouselIndex] = useState(0);
+  const cardsFlipped = useRef(0)
+  const correctGuesses = useRef(0)
+  const incorrectGuesses = useRef(0)
+  const [carouselIndex, setCarouselIndex] = useState(0)
   // const [carouselIndex, setCarouselIndex] = useState(0)
 
   const flipCard = () => {
-    cardsFlipped.current = cardsFlipped.current + 1;
-  };
+    cardsFlipped.current = cardsFlipped.current + 1
+  }
 
   const addOneCorrect = () => {
-    correctGuesses.current = correctGuesses.current + 1;
-  };
+    correctGuesses.current = correctGuesses.current + 1
+  }
 
   const addOneIncorrect = () => {
-    incorrectGuesses.current = incorrectGuesses.current + 1;
-  };
+    incorrectGuesses.current = incorrectGuesses.current + 1
+  }
 
   const nextSlide = () => {
-    setCarouselIndex(carouselIndex + 1);
-  };
+    setCarouselIndex(carouselIndex + 1)
+  }
 
   const makeButtons = (currentSymbol) => {
-    const answers = [];
-    answers.push(currentSymbol);
+    const answers = []
+    answers.push(currentSymbol)
 
     for (let i = 0; i < 3; i++) {
-      const random = Math.floor(Math.random() * 200);
+      const random = Math.floor(Math.random() * 200)
       if (!answers.includes(cardsData[random])) {
-        answers.push(cardsData[random].symbol);
+        answers.push(cardsData[random].symbol)
       }
     }
 
-    shuffle(answers);
-    return answers;
-  };
+    shuffle(answers)
+    return answers
+  }
 
   const cards = cardsData.map((card, index) => {
-    const currentSymbol = card.symbol;
+    const currentSymbol = card.symbol
 
-    const answerButtons = makeButtons(currentSymbol);
+    const answerButtons = makeButtons(currentSymbol)
 
     return (
       <article
@@ -70,8 +69,8 @@ const Game = ({
           nextSlide={nextSlide}
         />
       </article>
-    );
-  });
+    )
+  })
 
   return (
     <section className="carousel-container">
@@ -88,15 +87,7 @@ const Game = ({
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-Game.propTypes = {
-  cardsData: PropTypes.array,
-  shuffle: PropTypes.func,
-  saveCardForLater: PropTypes.func,
-  gameOver: PropTypes.bool,
-  resetTimer: PropTypes.func,
-};
-
-export default Game;
+export default Game
